@@ -2,6 +2,7 @@
  * заполненный в начале символами fillString.
  * Допускается в fillString передавать строку из нескольких символов. */
 export function padStart(text, maxLength, fillString = ' ') {
+
 }
 
 /** Возвращает копию text увеличенный до длины maxLength
