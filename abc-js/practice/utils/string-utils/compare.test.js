@@ -6,43 +6,53 @@ import {
 import { complexText, ZERO_CODE_CHAR } from './common.js';
 
 describe('isEqualTests', () => {
-  test('одиночные одинаковые символы', () => {
+  test('одиночные символы', () => {
     assertToBe(isEqual('a', 'a'), true);
     assertToBe(isEqual('a', 'b'), false);
   });
-  // test('количество символов одинаково, но не равны', () => {
-  //   assertToBe(isEqual('abc', 'abb'), false);
-  // });
-  // test('равны, но у первого больше символов', () => {
-  //   assertToBe(isEqual('abbb', 'abb'), false);
-  // });
-  // test('равны, но у второго больше символов', () => {
-  //   assertToBe(isEqual('abb', 'abbb'), false);
-  // });
-  // test('пустые строки', () => {
-  //   assertToBe(isEqual('', ''), true);
-  // });
-  // test('пустые и непустая строка', () => {
-  //   assertToBe(isEqual('', 'a'), false);
-  // });
-  // test('сложные одинаковые строки', () => {
-  //   assertToBe(isEqual(complexText, complexText), true);
-  // });
-  // test('сложные строки различной длины', () => {
-  //   assertToBe(isEqual(complexText + ZERO_CODE_CHAR, complexText), false);
-  // });
-  // test('несоответствие типа второго аргумента приводит к ЛОЖЬ', () => {
-  //   assertToBe(isEqual('2', 2), false);
-  // });
-  // test('несоответствие типа первого аргумента приводит к ЛОЖЬ', () => {
-  //   assertToBe(isEqual(2, '2'), false);
-  // });
-  // test('если не передать второй аргумент, то будет ошибка', () => {
-  //   assertThrow(() => isEqual('a'), 'both parameters are required');
-  // });
-  // test('если не передать аргументы, то будет ошибка', () => {
-  //   assertThrow(() => isEqual(), 'both parameters are required');
-  // });
+  test('количество символов одинаково, но не равны', () => {
+    assertToBe(isEqual('abc', 'abb'), false);
+    assertToBe(isEqual('abc', 'abc'), true);
+  });
+  test('равны, но у первого больше символов', () => {
+    assertToBe(isEqual('abbb', 'abb'), false);
+  });
+  test('равны, но у второго больше символов', () => {
+    assertToBe(isEqual('abb', 'abbb'), false);
+  });
+  test('пустые строки', () => {
+    assertToBe(isEqual('', ''), true);
+  });
+  test('пустые и непустая строка', () => {
+    assertToBe(isEqual('', 'a'), false);
+  });
+  test('сложные одинаковые строки', () => {
+    assertToBe(isEqual(complexText, complexText), true);
+  });
+  test('сложные строки различной длины', () => {
+    assertToBe(isEqual(complexText + 'a', complexText), false);
+    assertToBe(isEqual(complexText + ZERO_CODE_CHAR, complexText), false);
+  });
+  test('несоответствие типа второго аргумента приводит к ЛОЖЬ', () => {
+    assertToBe(isEqual('2', 2), false);
+  });
+  test('несоответствие типа первого аргумента приводит к ЛОЖЬ', () => {
+    assertToBe(isEqual(2, '2'), false);
+  });
+  test('если не передать второй аргумент, то будет ошибка выполнения', () => {
+    assertThrow(() => isEqual('a'));
+  });
+  test('если не передать второй аргумент, то будет ошибка теста', () => {
+    assertThrow(() => isEqual('a'), 'both parameters are required');
+  });
+  test('если аргумент null, то будет ошибка теста', () => {
+    assertThrow(() => isEqual('a', null), 'both parameters are required');
+    assertThrow(() => isEqual(null, null), 'both parameters are required');
+    assertThrow(() => isEqual(null, '5'), 'both parameters are required');
+  });
+  test('если не передать аргументы, то будет ошибка', () => {
+    assertThrow(() => isEqual(), 'both parameters are required');
+  });
 });
 
 describe('isNotEqualTests', () => {

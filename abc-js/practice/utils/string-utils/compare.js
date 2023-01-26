@@ -1,6 +1,19 @@
 
 /** возвращает булевый ответ равны ли параметры firstText и secondText. */
 export function isEqual(firstText, secondText) {
+  console.log('-------------------------')
+  console.log(`input --- fText: ${firstText}; secondText: ${secondText}`)
+  if (firstText === undefined || firstText === null) throw Error('both parameters are required');
+  if (secondText === undefined || secondText === null) throw Error('both parameters are required');
+
+  if (firstText.length !== secondText.length) return false;
+  const cycleLength = firstText.length < secondText.length ? firstText.length : secondText.length;
+
+  for (let index = 0; index < cycleLength; index += 1) {
+    console.log(`for --- index: ${index}; fChar: ${firstText[index]}; sChar: ${secondText[index]}`)
+    if (firstText[index] !== secondText[index]) return false;
+  }
+  return true;
 }
 
 /** возвращает true если аргументы не равны, и true в иных случаях. */
